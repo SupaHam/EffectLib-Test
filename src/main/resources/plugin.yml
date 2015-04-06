@@ -1,0 +1,8 @@
+name: "${name}"
+main: "${main-class}"
+version: "${version}"
+commands:
+  effectlib:
+    description: 'Test effects from EffectLib.'
+    aliases: ['fxl', 'fx', 'effects']
+    permission: 'effectlib.test'
