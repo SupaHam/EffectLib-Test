@@ -5,6 +5,10 @@ import com.google.common.base.Preconditions;
 import com.google.common.base.Splitter;
 
 import com.supaham.effectlibtest.Serializers.Serializer;
+import com.supaham.effectlibtest.customeffects.NinjaEffect;
+import com.supaham.effectlibtest.customeffects.NinjaEffect.Ninja;
+import com.supaham.effectlibtest.customeffects.RainbowFartingUnicorn;
+import com.supaham.effectlibtest.customeffects.RainbowFartingUnicorn.RFU;
 
 import de.slikey.effectlib.Effect;
 import de.slikey.effectlib.EffectManager;
@@ -122,6 +126,9 @@ public class EffectLibTestPlugin extends JavaPlugin {
   @Override
   public void onEnable() {
     effectManager = new EffectManager(this);
+
+    EffectLibTestPlugin.getPlugin().registerClass("ninja", NinjaEffect.class, new Ninja());
+    EffectLibTestPlugin.getPlugin().registerClass("rfu", RainbowFartingUnicorn.class, new RFU());
   }
 
   @Override
@@ -187,6 +194,7 @@ public class EffectLibTestPlugin extends JavaPlugin {
 
   public <T extends Effect> void registerClass(String name, Class<T> clazz,
                                                Serializer<T> serializer) {
+    plugin.getLogger().info("Registering " + clazz + " under '" + name + "'.");
     this.effectClasses.put(name.toLowerCase(), clazz);
     if (serializer != null) {
       Serializers.register(clazz, serializer);
